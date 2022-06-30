@@ -43,6 +43,26 @@ module.exports = {
 			});
 		}
 	},
+	getClientAppointments: async (req, res) => {
+		try {
+            let body = req.body;
+            let filter = {
+                clientId: body.clientId,
+            };
+			let appointments = await appointment.find(filter);
+			res.status(200).json({
+				success: true,
+				message: "Client appointments.",
+				appointments,
+			});
+		} catch (err) {
+			res.status(500).json({
+				success: false,
+				message: "An error was ocurred in the request",
+				err,
+			});
+		}
+	},
 	completeAppointment: async (req, res) => {
 		try {
 			let body = req.body;
