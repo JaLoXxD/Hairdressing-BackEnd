@@ -45,9 +45,9 @@ module.exports = {
 	},
 	getClientAppointments: async (req, res) => {
 		try {
-            let body = req.body;
+            let query = req.query;
             let filter = {
-                clientId: body.clientId,
+                clientId: query.clientId,
             };
 			let appointments = await appointment.find(filter);
 			res.status(200).json({
